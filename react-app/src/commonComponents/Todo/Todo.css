@@ -1,0 +1,48 @@
+
+  .complete {
+    text-decoration: line-through;
+    opacity: 0.4;
+  }
+
+  .edit-input {
+    padding: 3px 5px;
+    border-radius: 4px 0 0 4px;
+    border: 2px solid #5d0cff;
+    outline: none;
+    width: 320px;
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+  }
+  
+  .edit-input::placeholder {
+    color: #e2e2e2;
+  }
+  
+  .todo-container {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+  }
+  
+  .icons {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
+  .task {
+    display: flex;
+    align-items: center;
+  }
+  
+  .delete-icon {
+    margin-right: 5px;
+    color: #fff;
+  }
+  
+  .edit-icon {
+    color: #fff;
+  }
