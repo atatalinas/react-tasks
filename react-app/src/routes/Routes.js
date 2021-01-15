@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+
 import { ROUTES } from '../constants/routesNames';
 import TodoContainer from '../pages/TodoPage/containers/TodoPageContainer';
 import HomePage from '../pages/HomePage/HomePage';

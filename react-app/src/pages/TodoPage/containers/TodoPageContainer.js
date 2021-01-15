@@ -1,12 +1,13 @@
 import React, { useCallback } from 'react';
-import FormPage from "../components/TodoPage";
-import { useForm } from "../../../helpers/hooks";
 import { useDispatch, useSelector } from 'react-redux';
+
+import { useForm } from "../../../helpers/hooks";
+import FormPage from "../components/TodoPage";
 import { CREATE_TODO, DELETE_TODO, COMPLETE_TODO, UPDATE_TODO, UPDATE_EDIT_INPUT_VALUE } from '../actions';
 
 const FormPageContainer = () => {
     const [form, setFormValues, reset] = useForm({ todo: '', isEditMode: false, isCompleted: false });
-    const [editInput, setEditInput] = useForm({ editInput: '' });
+    const [editInput, setEditInput] = useForm({ editValue: '' });
 
     const dispatch = useDispatch();
     const { todos: todoList, editInputValue: todoBeforeEdit } = useSelector(state => state.todoPage);
@@ -51,7 +52,7 @@ const FormPageContainer = () => {
     const handleTodoUpdate = useCallback((index) => {
         const todosCopy = [...todoList];
 
-        todosCopy[index].todo = editInput.editInput.trim() !== '' ? editInput.editInput : todoBeforeEdit;
+        todosCopy[index].todo = editInput.editValue.trim() !== '' ? editInput.editValue : todoBeforeEdit;
         todosCopy[index].isEditMode = false;
 
         dispatch(UPDATE_TODO(todosCopy));
@@ -59,10 +60,20 @@ const FormPageContainer = () => {
 
 
     return (
-        <FormPage formValues={form} setFormValues={setFormValues} todoList={todoList} handleSubmit={handleSubmit}
-            handleFormReset={reset} handleTodoDelete={handleTodoDelete} handleTodoEdit={handleTodoEdit}
-            handleTodoComplete={handleTodoComplete} handleTodoUpdate={handleTodoUpdate}
-            editInput={editInput} setEditInput={setEditInput} todoBeforeEdit={todoBeforeEdit} />
+        <FormPage
+            formValues={form}
+            setFormValues={setFormValues}
+            todoList={todoList}
+            handleSubmit={handleSubmit}
+            handleFormReset={reset}
+            handleTodoDelete={handleTodoDelete}
+            handleTodoEdit={handleTodoEdit}
+            handleTodoComplete={handleTodoComplete}
+            handleTodoUpdate={handleTodoUpdate}
+            editInput={editInput}
+            setEditInput={setEditInput}
+            todoBeforeEdit={todoBeforeEdit}
+        />
     );
 };
 

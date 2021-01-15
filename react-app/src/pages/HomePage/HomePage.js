@@ -1,7 +1,8 @@
 import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
-import { ROUTES } from '../../constants/routesNames';
 import Button from '@material-ui/core/Button';
+
+import { ROUTES } from '../../constants/routesNames';
 import './HomePage.css';
 
 const HomePage = () => {

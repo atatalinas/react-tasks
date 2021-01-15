@@ -1,9 +1,10 @@
 import React from 'react';
+
 import Todo from '../../../commonComponents/Todo/Todo';
 import './TodoPage.css';
 
 const FormPage = ({ formValues, setFormValues, todoList, handleSubmit, handleTodoDelete, handleTodoComplete, handleTodoEdit,
-    handleTodoUpdate, editInput, setEditInput, todoBeforeEdit }) => {
+    handleTodoUpdate, setEditInput }) => {
     const { todo } = formValues;
 
     return (
@@ -14,12 +15,17 @@ const FormPage = ({ formValues, setFormValues, todoList, handleSubmit, handleTod
                 <button type='submit' className='todo-button' disabled={todo.length === 0}>Add</button>
             </form>
             <div>
-                {todoList.sort((currentTodo, nextTodo) => currentTodo.isCompleted > nextTodo.isCompleted ? 1 : -1),
+                {todoList.sort((currentTodo, nextTodo) => currentTodo.isCompleted >= nextTodo.isCompleted ? 1 : -1),
                     todoList.map((todo, index) => {
                         return <div key={index} >
-                            <Todo todos={todo} handleDelete={() => handleTodoDelete(index)} handleEdit={() => handleTodoEdit(index)}
-                                handleComplete={() => handleTodoComplete(index)} handleUpdate={() => handleTodoUpdate(index)}
-                                editingInput={editInput} setEditInput={setEditInput} />
+                            <Todo
+                                todos={todo}
+                                handleDelete={() => handleTodoDelete(index)}
+                                handleEdit={() => handleTodoEdit(index)}
+                                handleComplete={() => handleTodoComplete(index)}
+                                handleUpdate={() => handleTodoUpdate(index)}
+                                setEditInput={setEditInput}
+                            />
                         </div>
                     })}
             </div>
@@ -27,5 +33,4 @@ const FormPage = ({ formValues, setFormValues, todoList, handleSubmit, handleTod
     )
 }
 
-// style={{ width: 200, marginBottom: 25, padding: 10, border: '1px solid green' }}
 export default React.memo(FormPage);
