@@ -6,8 +6,8 @@ import FormPage from "../components/TodoPage";
 import { CREATE_TODO, DELETE_TODO, COMPLETE_TODO, UPDATE_TODO, UPDATE_EDIT_INPUT_VALUE } from '../actions';
 
 const FormPageContainer = () => {
-    const [form, setFormValues, reset] = useForm({ todo: '', isEditMode: false, isCompleted: false });
-    const [editInput, setEditInput] = useForm({ editValue: '' });
+    const [form, setFormValues, handleForMainFieldClick, reset] = useForm({ todo: '', isEditMode: false, isCompleted: false });
+    const [editInput, setEditInput, handleForFieldClick] = useForm({ editValue: '' });
 
     const dispatch = useDispatch();
     const { todos: todoList, editInputValue: todoBeforeEdit } = useSelector(state => state.todoPage);
@@ -16,7 +16,6 @@ const FormPageContainer = () => {
         event.preventDefault();
 
         dispatch(CREATE_TODO(form));
-
         reset();
     }, [form, reset, dispatch]);
 
@@ -50,8 +49,9 @@ const FormPageContainer = () => {
 
     const handleTodoUpdate = useCallback((index) => {
         const todosCopy = [...todoList];
+        const isEmptyInput = editInput.editValue.trim() === '';
 
-        todosCopy[index].todo = editInput.editValue.trim() !== '' ? editInput.editValue : todoBeforeEdit;
+        todosCopy[index].todo = isEmptyInput ? todoBeforeEdit : editInput.editValue;
         todosCopy[index].isEditMode = false;
 
         dispatch(UPDATE_TODO(todosCopy));
@@ -71,6 +71,7 @@ const FormPageContainer = () => {
             editInput={editInput}
             setEditInput={setEditInput}
             todoBeforeEdit={todoBeforeEdit}
+            handleForFieldClick={handleForFieldClick}
         />
     );
 };

@@ -4,7 +4,7 @@ import Todo from '../../../commonComponents/Todo/Todo';
 import './TodoPage.css';
 
 const FormPage = ({ formValues, setFormValues, todoList, handleSubmit, handleTodoDelete, handleTodoComplete, handleTodoEdit,
-    handleTodoUpdate, setEditInput }) => {
+    handleTodoUpdate, setEditInput, todoBeforeEdit, editInput, handleForFieldClick }) => {
     const { todo } = formValues;
 
     return (
@@ -15,7 +15,6 @@ const FormPage = ({ formValues, setFormValues, todoList, handleSubmit, handleTod
                 <button type='submit' className='todo-button' disabled={todo.length === 0}>Add</button>
             </form>
             <div>
-
                 {todoList.map((todo, index) => {
                     return <div key={index} >
                         <Todo
@@ -25,6 +24,9 @@ const FormPage = ({ formValues, setFormValues, todoList, handleSubmit, handleTod
                             handleComplete={() => handleTodoComplete(index)}
                             handleUpdate={() => handleTodoUpdate(index)}
                             setEditInput={setEditInput}
+                            todoBeforeEdit={todoBeforeEdit}
+                            editInput={editInput}
+                            handleForFieldClick={handleForFieldClick}
                         />
                     </div>
                 })}
