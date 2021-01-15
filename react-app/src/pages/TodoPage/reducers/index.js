@@ -12,6 +12,7 @@ const todoPageReducer = handleActions({
         const todosCopy = [...state.todos];
 
         todosCopy.push(payload);
+        todosCopy.sort((currentTodo, nextTodo) => currentTodo.isCompleted >= nextTodo.isCompleted ? 1 : -1);
 
         return {
             ...state,
@@ -28,6 +29,8 @@ const todoPageReducer = handleActions({
     },
     [actions.COMPLETE_TODO]: (state, { payload }) => {
         const todosCopy = [...payload];
+
+        todosCopy.sort((currentTodo, nextTodo) => currentTodo.isCompleted >= nextTodo.isCompleted ? 1 : -1);
 
         return {
             ...state,

@@ -12,8 +12,7 @@ const Todo = ({ todos, handleComplete, handleEdit, handleDelete, handleUpdate, s
         <div className='todo-row' >
             <div className={isCompleted ? 'task complete' : 'task'}>
                 <div className='icons'>
-                    {!isCompleted ? <BiCircle onClick={handleComplete}>Complete</BiCircle> :
-                        <BiCheckCircle>Complete</BiCheckCircle>}
+                    {!isCompleted ? <BiCircle onClick={handleComplete}>Complete</BiCircle> : <BiCheckCircle>Complete</BiCheckCircle>}
                 </div>
                 {todos.isEditMode ? < input type="text" name='editValue' placeholder={todo} className="edit-input" onChange={setEditInput} /> : todo}
             </div>

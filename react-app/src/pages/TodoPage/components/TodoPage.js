@@ -15,19 +15,19 @@ const FormPage = ({ formValues, setFormValues, todoList, handleSubmit, handleTod
                 <button type='submit' className='todo-button' disabled={todo.length === 0}>Add</button>
             </form>
             <div>
-                {todoList.sort((currentTodo, nextTodo) => currentTodo.isCompleted >= nextTodo.isCompleted ? 1 : -1),
-                    todoList.map((todo, index) => {
-                        return <div key={index} >
-                            <Todo
-                                todos={todo}
-                                handleDelete={() => handleTodoDelete(index)}
-                                handleEdit={() => handleTodoEdit(index)}
-                                handleComplete={() => handleTodoComplete(index)}
-                                handleUpdate={() => handleTodoUpdate(index)}
-                                setEditInput={setEditInput}
-                            />
-                        </div>
-                    })}
+
+                {todoList.map((todo, index) => {
+                    return <div key={index} >
+                        <Todo
+                            todos={todo}
+                            handleDelete={() => handleTodoDelete(index)}
+                            handleEdit={() => handleTodoEdit(index)}
+                            handleComplete={() => handleTodoComplete(index)}
+                            handleUpdate={() => handleTodoUpdate(index)}
+                            setEditInput={setEditInput}
+                        />
+                    </div>
+                })}
             </div>
         </div>
     )

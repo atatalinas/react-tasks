@@ -48,7 +48,6 @@ const FormPageContainer = () => {
         dispatch(UPDATE_EDIT_INPUT_VALUE(todosCopy[index].todo));
     }, [dispatch, todoList]);
 
-
     const handleTodoUpdate = useCallback((index) => {
         const todosCopy = [...todoList];
 
@@ -57,7 +56,6 @@ const FormPageContainer = () => {
 
         dispatch(UPDATE_TODO(todosCopy));
     }, [editInput, dispatch, todoBeforeEdit, todoList]);
-
 
     return (
         <FormPage
